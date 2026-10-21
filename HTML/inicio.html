@@ -1,1 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#100d18">
+    <title>VIBE — Sua música, seu momento</title>
+    <link rel="stylesheet" href="../CSS/inicio.css">
+    <script src="../JS/inicio.js" defer></script>
+</head>
+
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <a href="#" class="logo" data-view="discover">
+                <span class="logo-symbol">v.</span>
+                <span>VIBE</span>
+            </a>
+            <button class="avatar" id="profileButton" aria-label="Sobre o VIBE">V</button>
+        </header>
+
+        <main>
+            <section class="hero" id="hero">
+                <div class="hero-copy">
+                    <span class="eyebrow"><span class="pulse"></span> SUA TRILHA, SEU MOMENTO</span>
+                    <h1>O que você<br>quer <span>sentir?</span></h1>
+                    <p>Existe uma música para cada versão de você.</p>
+                </div>
+                <div class="hero-art" aria-hidden="true">
+                    <div class="art-orbit orbit-one"></div>
+                    <div class="art-orbit orbit-two"></div>
+                    <div class="art-disc"><span>V</span></div>
+                    <span class="floating-note note-one">♫</span>
+                    <span class="floating-note note-two">♪</span>
+                    <span class="floating-star">✳</span>
+                </div>
+            </section>
+
+            <section class="mood-section" id="moodSection">
+                <div class="section-title">
+                    <div>
+                        <span class="eyebrow">SINTA SEM EXPLICAR</span>
+                        <h2>Seu mood<span class="accent">.</span></h2>
+                    </div>
+                    <span class="small-label">ESCOLHA UM</span>
+                </div>
+
+                <div class="mood-grid">
+                    <button class="mood-card mood-love" data-mood="Apaixonado">
+                        <span class="mood-emoji">♡</span>
+                        <span class="mood-name">Apaixonado</span>
+                        <span class="mood-caption">borboletas no peito</span>
+                    </button>
+                    <button class="mood-card mood-sad" data-mood="Nostálgico">
+                        <span class="mood-emoji">☾</span>
+                        <span class="mood-name">Nostálgico</span>
+                        <span class="mood-caption">sentindo tudo</span>
+                    </button>
+                    <button class="mood-card mood-happy" data-mood="Feliz">
+                        <span class="mood-emoji">✳</span>
+                        <span class="mood-name">Feliz</span>
+                        <span class="mood-caption">energia lá em cima</span>
+                    </button>
+                    <button class="mood-card mood-calm" data-mood="Tranquilo">
+                        <span class="mood-emoji">☁</span>
+                        <span class="mood-name">Tranquilo</span>
+                        <span class="mood-caption">paz na mente</span>
+                    </button>
+                    <button class="mood-card mood-night" data-mood="Reflexivo">
+                        <span class="mood-emoji">✧</span>
+                        <span class="mood-name">Reflexivo</span>
+                        <span class="mood-caption">pensamentos soltos</span>
+                    </button>
+                    <button class="mood-card mood-bold" data-mood="Confiante">
+                        <span class="mood-emoji">⚡</span>
+                        <span class="mood-name">Confiante</span>
+                        <span class="mood-caption">protagonista do dia</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="recommendations" id="recommendations">
+                <div class="section-title">
+                    <div>
+                        <span class="eyebrow" id="recommendationEyebrow">FEITAS PARA VOCÊ</span>
+                        <h2 id="recommendationTitle">Descobertas<span class="accent">.</span></h2>
+                    </div>
+                    <button class="text-button" id="resetMood">Ver todas ↗</button>
+                </div>
+                <p class="section-description" id="recommendationDescription">
+                    Escolha seu mood e deixe a música falar por você.
+                </p>
+                <div class="music-list" id="musicList"></div>
+            </section>
+
+            <section class="featured-playlist">
+                <div class="playlist-art">
+                    <div class="playlist-circle"></div>
+                    <span>AFTER<br>HOURS</span>
+                    <span class="playlist-star">✳</span>
+                </div>
+                <div class="playlist-info">
+                    <span class="eyebrow">PLAYLIST DA VIBE</span>
+                    <h3>Depois das<br>23:00</h3>
+                    <p>Para quando a noite tem muito a dizer.</p>
+                    <button class="outline-button" id="nightButton">Explorar playlist ↗</button>
+                </div>
+            </section>
+
+            <section class="favorites-section" id="favoritesSection">
+                <div class="section-title">
+                    <div>
+                        <span class="eyebrow">GUARDE O QUE TOCOU VOCÊ</span>
+                        <h2>Seus favoritos<span class="accent">.</span></h2>
+                    </div>
+                    <span class="favorite-count" id="favoriteCount">0 salvas</span>
+                </div>
+                <div id="favoritesList" class="music-list"></div>
+                <div id="favoritesEmpty" class="empty-favorites">
+                    <span>♡</span>
+                    <p>Suas músicas favoritas vão aparecer aqui.</p>
+                    <small>Toque no coração de uma música para guardá-la.</small>
+                </div>
+            </section>
+        </main>
+
+        <nav class="bottom-nav" aria-label="Navegação principal">
+            <button class="nav-item active" data-view="discover">
+                <span>⌕</span><small>Descobrir</small>
+            </button>
+            <button class="nav-item" data-view="favorites">
+                <span>♡</span><small>Favoritos</small>
+            </button>
+            <button class="nav-item" data-view="moods">
+                <span>◉</span><small>Moods</small>
+            </button>
+        </nav>
+
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+        <div class="modal-backdrop" id="modal" hidden>
+            <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+                <button class="modal-close" id="modalClose" aria-label="Fechar">×</button>
+                <div class="modal-symbol">v.</div>
+                <h2 id="modalTitle">A sua vida tem trilha sonora.</h2>
+                <p>O VIBE é um projeto de descoberta musical criado para conectar emoções, músicas e momentos. Escolha
+                    um mood, explore as sugestões e salve as faixas que combinam com você.</p>
+                <button class="primary-button" id="modalOk">Vamos nessa</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
